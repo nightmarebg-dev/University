@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <typeinfo>
 
 using namespace std;
 
@@ -12,7 +11,7 @@ private:
 public:
 
     plant() {
-        name = "flower";
+        name = "plant";
         price = 0;
         amount = 0;
     }
@@ -32,8 +31,10 @@ public:
         cout << "Amount: " << amount << endl;
 
     }
-
-    virtual void printIfRedFlower() {}
+    
+    string GetName(){
+        return name;
+    }
 
     double GetPrice() {
         return price;
@@ -69,11 +70,6 @@ public:
 
     string GetColor() {
         return color;
-    }
-
-    void printIfRedFlower() {
-        if (color == "red")
-        flower::displayData();
     }
 
 };
@@ -114,7 +110,8 @@ void Menu() {
     cout << "1. Add new plant" << endl;
     cout << "2. Display all plants" << endl;
     cout << "3. Displays plant with heighest price" << endl;
-    cout << "4. Displays all red flowers" << endl;
+    cout << "4. Create list of all red flowers names" << endl;
+    cout << "5. Display list of all red flowers names" << endl;
     cout << "0. Close the program" << endl;
 
 }
@@ -136,6 +133,9 @@ int main()
 
     short choice;
     int highestPriceIndex = 0;
+
+    int names = 0;
+    string redFlowers[200];
 
     do {
 
@@ -184,10 +184,26 @@ int main()
             break;
 
         case 4:
+        
+            names = 0;
+        
             for (int i = 0; i < plants; i++) {
 
-                garden[i]->printIfRedFlower();
+                colorPtr = dynamic_cast<flower*>(garden[i]);
+                
+                if (colorPtr) {
+                    redFlowers[names++] = garden[i]->GetName();
+                }
 
+            }
+            break;
+            
+        case 5:
+        
+            for (int i = 0; i < names; i++){
+                
+                cout << redFlowers[i] << endl;
+                
             }
             break;
         }
