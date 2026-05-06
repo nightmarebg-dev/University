@@ -27,34 +27,6 @@ public:
 	Tourist(string name, string EGN, string phone_number, int monthly_income, string country_to_visit) :
 		name(name), EGN(EGN), phone_number(phone_number), monthly_income(monthly_income), country_to_visit(country_to_visit) {}
 
-	void EGNtoInfo() {
-		char y[3] = { EGN[0], EGN[1] };
-		char m[3] = { EGN[2], EGN[3] };
-		char d[3] = { EGN[4], EGN[5] };
-
-		if (m[0] == '4' || m[0] == '5') {
-
-			year = 2000 + atoi(y);
-			month = atoi(m) - 40;
-
-		}
-		else {
-
-			year = 1900 + atoi(y);
-			month = atoi(m);
-
-		}
-
-		day = atoi(d);
-
-		if ((EGN[8] - '0') % 2 == 0) {
-			gender = 'm';
-		}
-		else gender = 'f';
-	}
-
-
-
 	void SetData() {
 		
 		cout << "Name: "; getline(cin, name);
@@ -62,9 +34,7 @@ public:
 		cout << "Phone number: "; getline(cin, phone_number);
 		cout << "Monthly income: "; cin >> monthly_income;
 		cin.ignore();
-		cout << "Country: "; cin >> country_to_visit;
-
-		EGNtoInfo();
+		cout << "Country: "; getline(cin, country_to_visit);
 
 	}
 
@@ -79,9 +49,41 @@ public:
 		cout << "Gender: "; if (gender == 'm') cout << "male" << endl; else cout << "female" << endl;
 
 	}
-
+	
+	string GetDateOfBirth(){
+	    
+        string y = { EGN[0], EGN[1] };
+		string m = { EGN[2], EGN[3] };
+		string d = { EGN[4], EGN[5] };
+		
+		string pre = "20";
+		
+		if (m[0] == '4'){
+		    
+		    m[0] = '0';
+		    
+		}else if (m[0] == '5') {
+		    
+		    m[0] == '1';
+		    
+		}else {
+		    pre = "19";
+		}
+		
+		return d + '/' + m + '/' + pre + y;
+		
+		
+	    
+	}
+	
 	char GetGender() {
-		return gender;
+	    
+	    if ((EGN[8] - '0') % 2 == 0){
+	        return 'm';
+	    }
+	    
+	    return 'f';
+	    
 	}
 
 	int GetIncome() {
@@ -90,16 +92,6 @@ public:
 
 	string GetName() {
 		return name;
-	}
-
-	string GetDateOfBirth() {
-		string y = to_string(year);
-		string m = to_string(month);
-		string d = to_string(day);
-
-		string date = d + '/' + m + '/' + y;
-
-		return date;
 	}
 
 	bool Check(string Country) {
@@ -124,8 +116,8 @@ void Menu() {
 
 int main()
 {
-	tourist agency[500];
-	tourist list[500];
+	Tourist agency[500];
+	Tourist list[500];
 
 	int c = 0;
 	int v = 0;
