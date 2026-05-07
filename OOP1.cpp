@@ -42,8 +42,6 @@ public:
 		cout << "Phone number: " << phone_number << endl;
 		cout << "Monthly income: " << monthly_income << endl;
 		cout << "Country: " << country_to_visit << endl;
-		cout << "Date of birth: " << day << '/' << month << '/' << year << endl;
-		cout << "Gender: "; if (gender == 'm') cout << "male" << endl; else cout << "female" << endl;
 
 	}
 	
