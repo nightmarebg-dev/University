@@ -11,9 +11,6 @@ protected:
 	int monthly_income;
 	string country_to_visit;
 
-	int year, month, day;
-	char gender;
-
 public:
 
 	Tourist() {
