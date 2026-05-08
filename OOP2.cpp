@@ -200,7 +200,9 @@ int main()
                 colorPtr = dynamic_cast<flower*>(garden[i]);
                 
                 if (colorPtr) {
-                    redFlowers[names++] = garden[i]->GetName();
+                    if (garden[i]->isRed()) {
+                        redFlowers[names++] = garden[i]->GetName();
+                    }
                 }
 
             }
