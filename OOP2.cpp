@@ -72,6 +72,14 @@ public:
         return color;
     }
 
+    bool isRed(){
+        if (color == "red") {
+            return true;
+        }
+
+        return false;
+    }
+
 };
 
 class tree : public plant {
